@@ -1,0 +1,51 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/art/player/VikingRunFront4.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/player/VikingRunFront3.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/player/VikingRunFront1.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/player/VikingRunFront2.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/player/VikingRunBack1.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/player/VikingRunBack2.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/player/VikingRunBack3.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/player/VikingRunBack4.png" type="Texture" id=8]
+[ext_resource path="res://assets/art/player/VikingRunLeft2.png" type="Texture" id=9]
+[ext_resource path="res://assets/art/player/VikingRunLeft3.png" type="Texture" id=10]
+[ext_resource path="res://assets/art/player/VikingRunLeft4.png" type="Texture" id=11]
+[ext_resource path="res://assets/art/player/VikingRunLeft1.png" type="Texture" id=12]
+[ext_resource path="res://Player.gd" type="Script" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "run_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "run_front",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "run_back",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24.9541, 45.0701 )
+
+[node name="Player" type="Area2D"]
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 5, -5 )
+scale = Vector2( 10, 10 )
+frames = SubResource( 1 )
+animation = "run_front"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
