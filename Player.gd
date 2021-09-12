@@ -47,3 +47,7 @@ func start(pos):
 	position = pos
 	show()
 	$AnimatedSprite.play()
+	
+func add_coin():
+	coins += 1
+	print("Coins", coins)

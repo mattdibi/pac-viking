@@ -12,7 +12,9 @@ script = ExtResource( 2 )
 [node name="PlayerStartPosition" type="Position2D" parent="."]
 position = Vector2( 320, 240 )
 
-[node name="Coin" parent="." instance=ExtResource( 3 )]
-
 [node name="CoinStartPosition" type="Position2D" parent="."]
 position = Vector2( 320, 400 )
+
+[node name="Coin" parent="." instance=ExtResource( 3 )]
+
+[connection signal="area_entered" from="Coin" to="Coin" method="_on_Coin_area_entered"]
