@@ -4,7 +4,7 @@ extends Area2D
 # Declare member variables here.
 export var speed = 200  # How fast the player will move (pixels/sec).
 var screen_size  # Size of the game window.
-
+var coins = 0 # Player score
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
