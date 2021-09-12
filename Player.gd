@@ -25,9 +25,7 @@ func _process(delta):
 		velocity.y -= 1
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		$AnimatedSprite.play()
-	else:
-		$AnimatedSprite.stop()
+
 	
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
@@ -42,7 +40,10 @@ func _process(delta):
 		$AnimatedSprite.animation = "run_front"
 	elif velocity.y < 0:
 		$AnimatedSprite.animation = "run_back"
+	else:
+		$AnimatedSprite.animation = "idle"
 	
 func start(pos):
 	position = pos
 	show()
+	$AnimatedSprite.play()
