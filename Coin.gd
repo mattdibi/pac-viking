@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 
 
 # Declare member variables here. Examples:
@@ -20,7 +20,7 @@ func start(pos):
 #func _process(delta):
 #	pass
 
+
 func _on_Coin_body_entered(body):
-	if (body.has_method("add_coin")):
-		body.add_coin()
-		queue_free()
+	print("Collision")
+	queue_free()

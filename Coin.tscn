@@ -15,14 +15,11 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 20.1716, 20.2893 )
+extents = Vector2( 20.3165, 20.1444 )
 
-[node name="Coin" type="Area2D"]
-position = Vector2( 0, 0.144913 )
+[node name="Coin" type="RigidBody2D"]
+gravity_scale = 0.0
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 10, 10 )
