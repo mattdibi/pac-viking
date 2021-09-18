@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/art/player/VikingRunFront4.png" type="Texture" id=1]
 [ext_resource path="res://assets/art/player/VikingRunFront3.png" type="Texture" id=2]
@@ -15,6 +15,20 @@
 [ext_resource path="res://Player.gd" type="Script" id=13]
 [ext_resource path="res://assets/art/player/VikingIdleFront2.png" type="Texture" id=14]
 [ext_resource path="res://assets/art/player/VikingIdleFront1.png" type="Texture" id=15]
+[ext_resource path="res://assets/art/player/PoweredRunBack1.png" type="Texture" id=16]
+[ext_resource path="res://assets/art/player/PoweredRunBack2.png" type="Texture" id=17]
+[ext_resource path="res://assets/art/player/PoweredRunBack3.png" type="Texture" id=18]
+[ext_resource path="res://assets/art/player/PoweredRunFront3.png" type="Texture" id=19]
+[ext_resource path="res://assets/art/player/PoweredRunFront2.png" type="Texture" id=20]
+[ext_resource path="res://assets/art/player/PoweredRunFront4.png" type="Texture" id=21]
+[ext_resource path="res://assets/art/player/PoweredRunRight1.png" type="Texture" id=22]
+[ext_resource path="res://assets/art/player/PoweredRunRight2.png" type="Texture" id=23]
+[ext_resource path="res://assets/art/player/PoweredRunRight3.png" type="Texture" id=24]
+[ext_resource path="res://assets/art/player/PoweredRunRight4.png" type="Texture" id=25]
+[ext_resource path="res://assets/art/player/PoweredRunFront1.png" type="Texture" id=26]
+[ext_resource path="res://assets/art/player/PoweredRunBack4.png" type="Texture" id=27]
+[ext_resource path="res://assets/art/player/PoweredIdle1.png" type="Texture" id=28]
+[ext_resource path="res://assets/art/player/PoweredIdle2.png" type="Texture" id=29]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -28,15 +42,35 @@ animations = [ {
 "name": "run_back",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 15 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "idle",
+"speed": 3.0
+}, {
 "frames": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "run_left",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
-"name": "idle",
-"speed": 3.0
+"name": "power_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "power_front",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "power_idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "power_back",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -52,7 +86,7 @@ __meta__ = {
 position = Vector2( 5, -5 )
 scale = Vector2( 10, 10 )
 frames = SubResource( 1 )
-animation = "idle"
+animation = "power_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

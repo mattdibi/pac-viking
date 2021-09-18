@@ -24,4 +24,5 @@ func start(pos):
 func _on_PowerCoin_area_entered(area):
 	if (area.has_method("add_coin")):
 		area.add_coin()
+		area.power_up()
 		queue_free()

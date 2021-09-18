@@ -5,6 +5,7 @@ extends Area2D
 export var speed = 200  # How fast the player will move (pixels/sec).
 var screen_size  # Size of the game window.
 var coins = 0 # Player score
+var powered_up = false # Power up state
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,17 +32,31 @@ func _process(delta):
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 	
-	if velocity.x != 0:
-		$AnimatedSprite.animation = "run_left"
-		$AnimatedSprite.flip_v = false
-		# See the note below about boolean assignment
-		$AnimatedSprite.flip_h = velocity.x > 0
-	elif velocity.y > 0:
-		$AnimatedSprite.animation = "run_front"
-	elif velocity.y < 0:
-		$AnimatedSprite.animation = "run_back"
+	# Animation
+	if not powered_up:
+		if velocity.x != 0:
+			$AnimatedSprite.animation = "run_left"
+			$AnimatedSprite.flip_v = false
+			# See the note below about boolean assignment
+			$AnimatedSprite.flip_h = velocity.x > 0
+		elif velocity.y > 0:
+			$AnimatedSprite.animation = "run_front"
+		elif velocity.y < 0:
+			$AnimatedSprite.animation = "run_back"
+		else:
+			$AnimatedSprite.animation = "idle"
 	else:
-		$AnimatedSprite.animation = "idle"
+		if velocity.x != 0:
+			$AnimatedSprite.animation = "power_right"
+			$AnimatedSprite.flip_v = false
+			# See the note below about boolean assignment
+			$AnimatedSprite.flip_h = velocity.x < 0
+		elif velocity.y > 0:
+			$AnimatedSprite.animation = "power_front"
+		elif velocity.y < 0:
+			$AnimatedSprite.animation = "power_back"
+		else:
+			$AnimatedSprite.animation = "power_idle"
 	
 func start(pos):
 	position = pos
@@ -50,4 +65,8 @@ func start(pos):
 	
 func add_coin():
 	coins += 1
-	print("Coins", coins)
+	print("Coins: ", coins)
+
+func power_up():
+	powered_up = true
+	print("Power up")
