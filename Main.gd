@@ -8,6 +8,7 @@ extends Node
 func _ready():
 	$Player.start($PlayerStartPosition.position)
 	$Coin.start($CoinStartPosition.position)
+	$PowerCoin.start($PowerCoinStartPosition.position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
