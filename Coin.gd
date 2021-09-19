@@ -22,7 +22,7 @@ func start(pos):
 #	pass
 
 
-func _on_Coin_area_entered(area):
-	if (area.has_method("add_coin")):
-		area.add_coin()
+func _on_Coin_body_entered(body):
+	if (body.has_method("add_coin")):
+		body.add_coin()
 		queue_free()

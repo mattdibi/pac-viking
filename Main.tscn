@@ -25,5 +25,3 @@ position = Vector2( 320, 100 )
 [node name="Coin" parent="." instance=ExtResource( 3 )]
 
 [node name="PowerCoin" parent="." instance=ExtResource( 4 )]
-
-[connection signal="area_entered" from="Coin" to="Coin" method="_on_Coin_area_entered"]

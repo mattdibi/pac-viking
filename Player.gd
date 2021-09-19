@@ -1,5 +1,4 @@
-extends Area2D
-
+extends KinematicBody2D
 
 # Declare member variables here.
 export var speed = 200  # How fast the player will move (pixels/sec).
