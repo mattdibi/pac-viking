@@ -27,9 +27,10 @@ func _process(delta):
 		velocity = velocity.normalized() * speed
 
 	
-	position += velocity * delta
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
+	# Using move_and_collide.
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		print("I collided with ", collision.collider.name)
 	
 	# Animation
 	if not powered_up:
