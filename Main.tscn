@@ -10,7 +10,7 @@
 script = ExtResource( 2 )
 
 [node name="PlayerStartPosition" type="Position2D" parent="."]
-position = Vector2( 400.201, 237.772 )
+position = Vector2( 802.358, 882.587 )
 
 [node name="CoinStartPosition" type="Position2D" parent="."]
 position = Vector2( 320, 400 )
