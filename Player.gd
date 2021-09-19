@@ -32,6 +32,12 @@ func _process(_delta):
 		var collision = get_slide_collision(i)
 		print("I collided with ", collision.collider.name)
 	
+	# Screen wrapping
+	# FIXME: Get map size instead of using constants
+	# FIXME: This constants were used in the Camera2D too
+	position.x = wrapf(position.x, 0, 1600)
+	position.y = wrapf(position.y, 0, 1600)
+
 	# Animation
 	if not powered_up:
 		if velocity.x != 0:
