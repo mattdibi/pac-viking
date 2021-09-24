@@ -25,3 +25,6 @@ position = Vector2( 86.0327, 85.0021 )
 [node name="Coin" parent="." instance=ExtResource( 3 )]
 
 [node name="PowerCoin" parent="." instance=ExtResource( 4 )]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.27451, 0.27451, 0.27451, 1 )
