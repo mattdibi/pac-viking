@@ -103,6 +103,7 @@ smoothing_enabled = true
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 30 )
+color = Color( 1, 0.952941, 0.764706, 1 )
 shadow_enabled = true
 shadow_filter = 3
 shadow_filter_smooth = 13.2
