@@ -5,10 +5,10 @@ extends Node
 
 # PowerUp Coins position array
 var power_coin_pos = [
-	Vector2(80, 80),
-	Vector2(80, 1520),
-	Vector2(1520, 80),
-	Vector2(1520, 1520)
+	Vector2(  80,  160),
+	Vector2(1520,  160),
+	Vector2(  80, 1200),
+	Vector2(1520, 1200)
 ]
 
 # Standard Coins position array
