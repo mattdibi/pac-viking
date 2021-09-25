@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 # Declare member variables here.
-export var speed = 200  # How fast the player will move (pixels/sec).
+export var speed = 300  # How fast the player will move (pixels/sec).
 var screen_size  # Size of the game window.
 var coins = 0 # Player score
 var powered_up = false # Power up state
