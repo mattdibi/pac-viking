@@ -11,7 +11,6 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var velocity = Vector2()  # The player's movement vector.
@@ -75,4 +74,9 @@ func add_coin():
 
 func power_up():
 	powered_up = true
+	$PowerUpTimer.start()
 	print("Power up")
+
+func _on_PowerUpTimer_timeout():
+	powered_up = false
+	print("Power down")
