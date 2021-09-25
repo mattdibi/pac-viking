@@ -13,10 +13,16 @@ var power_coin_pos = [
 
 # Standard Coins position array
 var std_coin_pos = [
-	Vector2(160, 80),
-	Vector2(160, 1520),
-	Vector2(1520, 160),
-	Vector2(1400, 1520)
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+	[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+	[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -25,10 +31,13 @@ func _ready():
 
 	# Place coins in their positions
 	var std_coin = preload("res://Coin.tscn")
-	for coin_pos in std_coin_pos:
-		var coin = std_coin.instance()
-		add_child(coin)
-		coin.start(coin_pos)
+	for row in range(0, std_coin_pos.size()):
+		for col in range(0, std_coin_pos[row].size()):
+			if std_coin_pos[row][col]:
+				var start_pos = Vector2(col * 160 + 80, row * 160 + 80)
+				var coin = std_coin.instance()
+				add_child(coin)
+				coin.start(start_pos)
 
 	# Place power coins in the four corners
 	var power_coin = preload("res://PowerCoin.tscn")
