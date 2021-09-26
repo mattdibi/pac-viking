@@ -28,6 +28,7 @@ var std_coin_pos = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Player.start($PlayerStartPosition.position)
+	$AkabeiMob.start($AkabeiStartPosition.position)
 
 	# Place coins in their positions
 	var std_coin = preload("res://Coin.tscn")
