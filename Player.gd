@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
 # Declare member variables here.
-export var speed = 300  # How fast the player will move (pixels/sec).
+const NORMAL_SPEED = 250  # How fast the player will move (pixels/sec).
+const PWRUP_SPEED  = 350  # How fast the player will move when powered up (pixels/sec).
 var screen_size  # Size of the game window.
 var coins = 0 # Player score
 var powered_up = false # Power up state
@@ -22,8 +23,12 @@ func _process(_delta):
 		velocity.y += 1
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
+
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		var local_speed = NORMAL_SPEED
+		if powered_up:
+			local_speed = PWRUP_SPEED
+		velocity = velocity.normalized() * local_speed
 	
 	# Using move_and_slide.
 	velocity = move_and_slide(velocity)
