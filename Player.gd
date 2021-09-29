@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal update_score(score)
+
 # Declare member variables here.
 const NORMAL_SPEED = 250  # How fast the player will move (pixels/sec).
 const PWRUP_SPEED  = 350  # How fast the player will move when powered up (pixels/sec).
@@ -75,6 +77,7 @@ func start(pos):
 	
 func add_coin():
 	coins += 1
+	emit_signal("update_score", coins)
 	print("Coins: ", coins)
 
 func power_up():

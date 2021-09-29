@@ -26,7 +26,10 @@ var std_coin_pos = [
 ]
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func new_game():
+	#$HUD.update_score(score)
+	$HUD.show_message("Get Ready")
+
 	$Player.start($PlayerStartPosition.position)
 	$AkabeiMob.start($AkabeiStartPosition.position)
 
@@ -47,6 +50,9 @@ func _ready():
 		add_child(coin)
 		coin.start(coin_pos)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func game_over():
+	pass
+	# $HUD.show_game_over()
+
+func _on_Player_update_score(score):
+	$HUD.update_score(score)
