@@ -51,6 +51,12 @@ func new_game():
 		coin.start(coin_pos)
 
 func game_over():
+	# Remove not-picked coins
+	for obj in get_children():
+		if obj.is_in_group("coin"):
+			remove_child(obj)
+			obj.queue_free()
+	# Show game over message
 	$HUD.show_game_over()
 
 func _on_Player_update_score():

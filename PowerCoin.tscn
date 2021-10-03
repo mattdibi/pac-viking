@@ -19,7 +19,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 35.1586, 34.8886 )
 
-[node name="PowerCoin" type="Area2D"]
+[node name="PowerCoin" type="Area2D" groups=[
+"coin",
+]]
 script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
