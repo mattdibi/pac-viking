@@ -25,6 +25,8 @@ var std_coin_pos = [
 ]
 
 func _ready():
+	# Set Player position so that the camera is centered
+	# on the starting position
 	$Player.set_position($PlayerStartPosition.position)
 
 func new_game():
