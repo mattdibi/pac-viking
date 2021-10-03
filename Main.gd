@@ -74,6 +74,15 @@ func _on_Player_update_score():
 	player_score += 1
 	$HUD.update_score(player_score)
 
+	# If there's no more coins left game over
+	if no_more_coins():
+		game_over()
+
+func no_more_coins():
+	var coins = get_tree().get_nodes_in_group("coin")
+	print("Coins left: ", coins.size())
+	return coins.size() == 1 # FIXME
+
 func _on_Player_mob_collision():
 	handle_collision()
 
