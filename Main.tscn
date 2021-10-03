@@ -92,7 +92,12 @@ tile_data = PoolIntArray( 6, -1610612735, 0, 9, 1, 0, 131072, 1610612736, 0, 131
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
+[node name="MobRespawnTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
 [connection signal="mob_collision" from="AkabeiMob" to="." method="_on_AkabeiMob_mob_collision"]
 [connection signal="mob_collision" from="Player" to="." method="_on_Player_mob_collision"]
 [connection signal="update_score" from="Player" to="." method="_on_Player_update_score"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="MobRespawnTimer" to="." method="_on_MobRespawnTimer_timeout"]

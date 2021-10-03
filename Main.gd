@@ -62,6 +62,8 @@ func game_over():
 	# Remove PC
 	$AkabeiMob.stop()
 	$Player.stop()
+	# Stop timer if it's running
+	$MobRespawnTimer.stop()
 	# Remove not-picked coins
 	for obj in get_children():
 		if obj.is_in_group("coin"):
@@ -96,6 +98,9 @@ func handle_collision():
 		$HUD.update_score(player_score)
 		# Hide mob
 		$AkabeiMob.stop()
-		# TODO: Respawn time
+		$MobRespawnTimer.start()
 	else:
 		game_over()
+
+func _on_MobRespawnTimer_timeout():
+	$AkabeiMob.start($AkabeiStartPosition.position)
