@@ -1,7 +1,6 @@
 extends Node
 
-
-# Declare member variables here.
+var player_score = 0
 
 # PowerUp Coins position array
 var power_coin_pos = [
@@ -27,8 +26,9 @@ var std_coin_pos = [
 
 # Called when the node enters the scene tree for the first time.
 func new_game():
-	#$HUD.update_score(score)
-	$HUD.show_message("Get Ready")
+	player_score = 0
+	$HUD.update_score(player_score)
+	$HUD.show_message("Go!")
 
 	$Player.start($PlayerStartPosition.position)
 	$AkabeiMob.start($AkabeiStartPosition.position)
@@ -51,8 +51,21 @@ func new_game():
 		coin.start(coin_pos)
 
 func game_over():
-	pass
-	# $HUD.show_game_over()
+	$HUD.show_game_over()
 
-func _on_Player_update_score(score):
-	$HUD.update_score(score)
+func _on_Player_update_score():
+	player_score += 1
+	$HUD.update_score(player_score)
+
+func _on_Player_mob_collision():
+	if($Player.powered_up):
+		# Add +10 to the score
+		player_score += 10
+		$HUD.update_score(player_score)
+		# Hide mob
+		$AkabeiMob.disable_collision()
+		$AkabeiMob.hide()
+		# TODO: Respawn time
+	else:
+		$Player.hide()
+		game_over()

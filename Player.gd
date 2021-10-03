@@ -1,16 +1,17 @@
 extends KinematicBody2D
 
-signal update_score(score)
+signal update_score()
+signal mob_collision()
 
 # Declare member variables here.
 const NORMAL_SPEED = 250  # How fast the player will move (pixels/sec).
 const PWRUP_SPEED  = 350  # How fast the player will move when powered up (pixels/sec).
 var screen_size  # Size of the game window.
-var coins = 0 # Player score
 var powered_up = false # Power up state
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$CollisionShape2D.disabled = true
 	screen_size = get_viewport_rect().size
 	hide()
 
@@ -36,7 +37,8 @@ func _process(_delta):
 	velocity = move_and_slide(velocity)
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		print("I collided with ", collision.collider.name)
+		if collision.collider.name == "AkabeiMob":
+			emit_signal("mob_collision")
 	
 	# Screen wrapping
 	# FIXME: Get map size instead of using constants
@@ -74,11 +76,10 @@ func start(pos):
 	position = pos
 	show()
 	$AnimatedSprite.play()
+	$CollisionShape2D.disabled = false
 	
 func add_coin():
-	coins += 1
-	emit_signal("update_score", coins)
-	print("Coins: ", coins)
+	emit_signal("update_score")
 
 func power_up():
 	powered_up = true

@@ -3,7 +3,6 @@ extends KinematicBody2D
 var speed = 300
 onready var player = get_parent().get_node("Player")
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
@@ -36,3 +35,9 @@ func _physics_process(_delta):
 		$AnimatedSprite.animation = "walk_back"
 	else:
 		$AnimatedSprite.animation = "idle"
+
+func disable_collision():
+	$CollisionShape2D.disabled = true
+
+func enable_collision():
+	$CollisionShape2D.disabled = false
