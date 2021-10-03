@@ -24,15 +24,10 @@ var std_coin_pos = [
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
 
-# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Player.set_position($PlayerStartPosition.position)
+
 func new_game():
-	player_score = 0
-	$HUD.update_score(player_score)
-	$HUD.show_message("Go!")
-
-	$Player.start($PlayerStartPosition.position)
-	$AkabeiMob.start($AkabeiStartPosition.position)
-
 	# Place coins in their positions
 	var std_coin = preload("res://Coin.tscn")
 	for row in range(0, std_coin_pos.size()):
@@ -50,7 +45,21 @@ func new_game():
 		add_child(coin)
 		coin.start(coin_pos)
 
+	# Reset score
+	player_score = 0
+	$HUD.update_score(player_score)
+
+	# Show start message
+	$HUD.show_message("Go!")
+
+	# Enable PC
+	$Player.start($PlayerStartPosition.position)
+	$AkabeiMob.start($AkabeiStartPosition.position)
+
 func game_over():
+	# Remove PC
+	$AkabeiMob.stop()
+	$Player.stop()
 	# Remove not-picked coins
 	for obj in get_children():
 		if obj.is_in_group("coin"):
@@ -64,14 +73,18 @@ func _on_Player_update_score():
 	$HUD.update_score(player_score)
 
 func _on_Player_mob_collision():
+	handle_collision()
+
+func _on_AkabeiMob_mob_collision():
+	handle_collision()
+
+func handle_collision():
 	if($Player.powered_up):
 		# Add +10 to the score
 		player_score += 10
 		$HUD.update_score(player_score)
 		# Hide mob
-		$AkabeiMob.disable_collision()
-		$AkabeiMob.hide()
+		$AkabeiMob.stop()
 		# TODO: Respawn time
 	else:
-		$Player.hide()
 		game_over()

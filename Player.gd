@@ -11,9 +11,21 @@ var powered_up = false # Power up state
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$CollisionShape2D.disabled = true
 	screen_size = get_viewport_rect().size
+	stop()
+
+func set_position(pos):
+	position = pos
+
+func start(pos):
+	set_position(pos)
+	show()
+	$AnimatedSprite.play()
+	$CollisionShape2D.disabled = false
+
+func stop():
 	hide()
+	$CollisionShape2D.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -37,7 +49,7 @@ func _process(_delta):
 	velocity = move_and_slide(velocity)
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.name == "AkabeiMob":
+		if collision.collider.is_in_group("mob"):
 			emit_signal("mob_collision")
 	
 	# Screen wrapping
@@ -71,12 +83,6 @@ func _process(_delta):
 			$AnimatedSprite.animation = "power_back"
 		else:
 			$AnimatedSprite.animation = "power_idle"
-	
-func start(pos):
-	position = pos
-	show()
-	$AnimatedSprite.play()
-	$CollisionShape2D.disabled = false
 	
 func add_coin():
 	emit_signal("update_score")

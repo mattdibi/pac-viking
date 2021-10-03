@@ -18,6 +18,11 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 3.0
+}, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 1 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "walk_right",
@@ -28,11 +33,6 @@ animations = [ {
 "name": "walk_back",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "idle",
-"speed": 3.0
-}, {
 "frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "walk_front",
@@ -42,7 +42,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 29.9808, 50.1077 )
 
-[node name="AkabeiMob" type="KinematicBody2D"]
+[node name="AkabeiMob" type="KinematicBody2D" groups=[
+"mob",
+]]
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_group_": true

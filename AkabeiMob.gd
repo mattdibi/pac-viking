@@ -3,14 +3,21 @@ extends KinematicBody2D
 var speed = 300
 onready var player = get_parent().get_node("Player")
 
+signal mob_collision
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hide()
+	stop()
 
 func start(pos):
 	position = pos
 	show()
 	$AnimatedSprite.play()
+	$CollisionShape2D.disabled = false
+
+func stop():
+	hide()
+	$CollisionShape2D.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -36,8 +43,8 @@ func _physics_process(_delta):
 	else:
 		$AnimatedSprite.animation = "idle"
 
-func disable_collision():
-	$CollisionShape2D.disabled = true
-
-func enable_collision():
-	$CollisionShape2D.disabled = false
+	# Check for collisions
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.is_in_group("player"):
+			emit_signal("mob_collision")
